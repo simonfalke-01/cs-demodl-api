@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "start": "turbo run start",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
@@ -16,5 +17,14 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@repo/uds-ipc": "workspace:*",
+    "@types/globaloffensive": "^2.3.4",
+    "@types/steam-user": "^5.0.4",
+    "globaloffensive": "^3.2.0",
+    "globaloffensive-sharecode": "^1.1.1",
+    "steam-user": "^5.2.2",
+    "tsx": "^4.19.4"
+  }
 }

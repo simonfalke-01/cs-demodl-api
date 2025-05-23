@@ -1,0 +1,24 @@
+{
+  "name": "demo-dl",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --outDir dist",
+    "start": "NODE_ENV=production node dist/index.js",
+    "test": "yarn jest",
+    "lint": "eslint \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "@repo/uds-ipc": "workspace:*",
+    "dotenv": "16.5.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "eslint": "^8.57.0",
+    "typescript": "5.5.4"
+  }
+}

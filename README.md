@@ -1,33 +1,60 @@
-# `Turborepo` Vite starter
+# CS:GO Demo Downloader API
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+A system for retrieving CS:GO demo files using the CS:GO Game Coordinator.
 
-## Using this example
+## Setup
 
-Run the following command:
+1. Clone the repository
+2. Install dependencies
+   ```
+   bun install
+   ```
 
-```sh
-npx create-turbo@latest -e with-vite
+3. Configure environment variables
+   - Copy the .env.example file to .env in the demo-dl app directory
+   ```
+   cp apps/demo-dl/.env.example apps/demo-dl/.env
+   ```
+   - Edit the .env file with your Steam credentials
+   ```
+   STEAM_USERNAME=your_steam_username
+   STEAM_PASSWORD=your_steam_password
+   ```
+
+4. Run the application
+   ```
+   bun turbo run start
+   ```
+
+## API Endpoints
+
+### Get Demo URL
+```
+GET /api/:shareCode
 ```
 
-## What's inside?
+Retrieves the demo URL for a given CS:GO share code.
 
-This Turborepo includes the following packages and apps:
+Example:
+```
+GET /api/CSGO-LkCOc-UwdN3-dkQBV-F9Sxz-KeS8N
+```
 
-### Apps and Packages
+Response:
+```json
+{
+  "shareCode": "CSGO-LkCOc-UwdN3-dkQBV-F9Sxz-KeS8N",
+  "demoURL": "http://replay403.valve.net/730/003746913113794936940_1899413587.dem.bz2"
+}
+```
 
-- `docs`: a vanilla [vite](https://vitejs.dev) ts app
-- `web`: another vanilla [vite](https://vitejs.dev) ts app
-- `@repo/ui`: a stub component & utility library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: shared `eslint` configurations
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Architecture
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
+This project consists of two main components:
 
-### Utilities
+1. **API Server**: An Elysia server that handles HTTP requests and communicates with the CS:GO client
+2. **Demo Downloader**: A Node.js application that interfaces with the CS:GO Game Coordinator to retrieve demo URLs
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
+The components communicate using an IPC (Inter-Process Communication) channel.
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
