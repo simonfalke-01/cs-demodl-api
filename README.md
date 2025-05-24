@@ -26,6 +26,25 @@ A system for retrieving CS:GO demo files using the CS:GO Game Coordinator.
    bun turbo run start
    ```
 
+## Docker Deployment
+
+You can also run the application using Docker:
+
+1. Create a `.env` file in the project root with your Steam credentials:
+   ```
+   STEAM_USERNAME=your_steam_username
+   STEAM_PASSWORD=your_steam_password
+   ```
+
+2. Build and run using Docker Compose:
+   ```
+   docker compose up --build
+   ```
+
+3. The API will be available at `http://localhost:3000`
+
+**Note**: Make sure to add `.env` to your `.gitignore` file to avoid committing sensitive credentials to version control.
+
 ## API Endpoints
 
 ### Get Demo URL
