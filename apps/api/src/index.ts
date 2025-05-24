@@ -39,8 +39,12 @@ const app = new Elysia()
     .get('/api/:shareCode', async ({ params: { shareCode } }) => {
         if (demoURLs[shareCode]) {
             return { 
-                shareCode: shareCode,
-                demoURL: demoURLs[shareCode]
+                success: true,
+                message: "Demo URL has been retrieved.",
+                data: {
+                    sharecode: shareCode,
+                    demo_url: demoURLs[shareCode]
+                }
             };
         }
         
@@ -49,14 +53,17 @@ const app = new Elysia()
         });
         
         return new Promise((resolve, reject) => {
-            const timeout = 10000;
+            const timeout = 500;
             
             const timer = setTimeout(() => {
                 if (pendingRequests[shareCode]) {
                     delete pendingRequests[shareCode];
                     resolve({ 
-                        error: "Timeout waiting for demo URL",
-                        shareCode: shareCode
+                        success: false,
+                        message: "ShareCode does not exist or has expired.",
+                        data: {
+                            sharecode: shareCode
+                        }
                     });
                 }
             }, timeout);
@@ -64,8 +71,12 @@ const app = new Elysia()
             pendingRequests[shareCode] = {
                 resolve: (demoURL) => {
                     resolve({ 
-                        shareCode: shareCode,
-                        demoURL: demoURL
+                        success: true,
+                        message: "Demo URL has been retrieved.",
+                        data: {
+                            sharecode: shareCode,
+                            demo_url: demoURL
+                        }
                     });
                 },
                 reject,
