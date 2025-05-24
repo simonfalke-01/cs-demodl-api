@@ -26,6 +26,10 @@ A system for retrieving CS:GO demo files using the CS:GO Game Coordinator.
    bun turbo run start
    ```
 
+5. Access the API:
+   - API endpoint: `http://localhost:3000`
+   - Swagger documentation: `http://localhost:3000/swagger`
+
 ## Docker Deployment
 
 You can also run the application using Docker:
@@ -42,8 +46,13 @@ You can also run the application using Docker:
    ```
 
 3. The API will be available at `http://localhost:3000`
+4. Swagger documentation will be available at `http://localhost:3000/swagger`
 
 **Note**: Make sure to add `.env` to your `.gitignore` file to avoid committing sensitive credentials to version control.
+
+## API Documentation
+
+The API includes interactive Swagger documentation accessible at `/swagger` when the server is running. This provides a complete interface for testing the API endpoints.
 
 ## API Endpoints
 
