@@ -1,0 +1,12 @@
+services:
+  cs-demodl-api:
+    container_name: cs-demodl-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - STEAM_USERNAME=${STEAM_USERNAME}
+      - STEAM_PASSWORD=${STEAM_PASSWORD}
+      
