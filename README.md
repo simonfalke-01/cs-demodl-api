@@ -59,11 +59,26 @@ Example:
 GET /api/CSGO-LkCOc-UwdN3-dkQBV-F9Sxz-KeS8N
 ```
 
-Response:
+**Success Response:**
 ```json
 {
-  "shareCode": "CSGO-LkCOc-UwdN3-dkQBV-F9Sxz-KeS8N",
-  "demoURL": "http://replay403.valve.net/730/003746913113794936940_1899413587.dem.bz2"
+  "success": true,
+  "message": "Demo URL has been retrieved.",
+  "data": {
+    "sharecode": "CSGO-LkCOc-UwdN3-dkQBV-F9Sxz-KeS8N",
+    "demo_url": "http://replay403.valve.net/730/003746913113794936940_1899413587.dem.bz2"
+  }
+}
+```
+
+**Error Response (Invalid/Expired ShareCode):**
+```json
+{
+  "success": false,
+  "message": "ShareCode does not exist or has expired.",
+  "data": {
+    "sharecode": "CSGO-LkCOc-UwdN3-dkQBV-F9Sxz-KeS8N"
+  }
 }
 ```
 
